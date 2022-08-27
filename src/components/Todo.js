@@ -1,31 +1,34 @@
 import { useDispatch } from "react-redux";
 import CancelImage from "../assets/images/cancel.png";
 import { toggled, colorSelected, deleted } from "../redux/todos/actions";
+import updateStatus from "../redux/todos/thunk/updateStatus";
+import updateColor from "../redux/todos/thunk/updateColor";
+import deleteTodo from "../redux/todos/thunk/deleteTodo";
 export default function Todo({ todo }) {
   const { text, id, completed, color } = todo;
   const dispatch = useDispatch();
-  const handleStatusChange = (todoId) => {
-    dispatch(toggled(todoId));
+  const handleStatusChange = (todoId, completed) => {
+    dispatch(updateStatus(todoId, completed));
   };
 
   const handleColorChange = (id, color) => {
-    dispatch(colorSelected(id, color));
+    dispatch(updateColor(id, color));
   };
 
   const handleRemove = (id) => {
-    dispatch(deleted(id));
+    dispatch(deleteTodo(id));
   };
   return (
     <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
       <div
-        className={`rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
+        className={`relative rounded-full bg-white border-2  w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
           completed && "border-green-500 focus-within:border-green-500"
         }`}
       >
         <input
           type="checkbox"
           checked={completed}
-          onChange={() => handleStatusChange(id)}
+          onChange={() => handleStatusChange(id, completed)}
           className="opacity-0 absolute rounded-full"
         />
         {completed && (
@@ -52,7 +55,7 @@ export default function Todo({ todo }) {
       <div
         onClick={() => handleColorChange(id, "yellow")}
         className={`flex-shrink-0 h-4 border-yellow-500 hover:bg-yellow-500 w-4 rounded-full border-2 ml-auto cursor-pointer ${
-          color === "yellow" && "  bg-yellow-500"
+          color === "yellow" && "bg-yellow-500"
         } `}
       ></div>
 

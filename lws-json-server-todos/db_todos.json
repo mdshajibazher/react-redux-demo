@@ -4,7 +4,7 @@
       "id": 1,
       "text": "Learn Vanilla JavaScript",
       "completed": true,
-      "color": "yellow"
+      "color": "red"
     },
     {
       "id": 2,
@@ -47,18 +47,13 @@
     },
     {
       "text": "hdjhdjhdjsdh",
-      "completed": false,
+      "completed": true,
       "id": 9
     },
     {
-      "text": "LWS",
-      "completed": false,
-      "id": 10
-    },
-    {
       "text": "LWHH",
-      "completed": false,
-      "id": 11
+      "completed": true,
+      "id": 10
     }
   ]
 }
